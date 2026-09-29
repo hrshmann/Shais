@@ -1,0 +1,249 @@
+/* ============================================
+   THEMES
+   Every colour on the site resolves from these tokens (RGB triplets so
+   alpha can be applied: rgb(var(--ink-rgb) / 0.5)).
+
+   Resolution order on <html>:
+     data-theme            — a visitor's personal choice (browser only)
+     data-default-theme    — the owner-published default (server)
+     :root                 — Obsidian Luxury fallback
+
+   Keep ids in sync with lib/themes.ts.
+   ============================================ */
+
+:root,
+html[data-default-theme='obsidian']:not([data-theme]),
+html[data-theme='obsidian'] {
+  /* Obsidian Luxury — black, white, charcoal; cinematic monochrome */
+  --bg-rgb: 255 255 255;
+  --paper-rgb: 243 243 243;
+  --ink-rgb: 0 0 0;
+  --inv-bg-rgb: 0 0 0;
+  --inv-ink-rgb: 255 255 255;
+  --on-image-rgb: 255 255 255;
+  --scrim-rgb: 0 0 0;
+  --accent-rgb: 0 0 0;
+  --inv-accent-rgb: 255 255 255;
+  --media-bg: #1c1c1c;
+  --img-filter: grayscale(1) contrast(1.08);
+  --em-alpha: 0.85;
+  --label-alpha: 0.62;
+  --muted: 0.66;
+  --faint: 0.56;
+  --display-weight: 600;
+  --title-weight: 500;
+  --display-tracking: -0.02em;
+  color-scheme: light;
+}
+
+html[data-default-theme='blush']:not([data-theme]),
+html[data-theme='blush'] {
+  /* Blush Atelier — powder blush and muted rose; rose-toned monochrome photography,
+     lighter display weight, rose italics */
+  --bg-rgb: 252 247 246;
+  --paper-rgb: 246 233 231;
+  --ink-rgb: 46 30 33;
+  --inv-bg-rgb: 235 213 210;
+  --inv-ink-rgb: 46 30 33;
+  --on-image-rgb: 255 250 249;
+  --scrim-rgb: 70 38 45;
+  --accent-rgb: 150 84 94;
+  --inv-accent-rgb: 138 70 81;
+  --media-bg: #dcc3bf;
+  --img-filter: grayscale(1) sepia(0.3) hue-rotate(-38deg) saturate(1.35) brightness(1.04) contrast(0.97);
+  --em-alpha: 1;
+  --label-alpha: 1;
+  --muted: 0.82;
+  --faint: 0.74;
+  --display-weight: 500;
+  --title-weight: 400;
+  --display-tracking: -0.01em;
+  color-scheme: light;
+}
+
+html[data-default-theme='ivory']:not([data-theme]),
+html[data-theme='ivory'] {
+  /* Ivory Editorial — airy magazine: inverse blocks become stone, charcoal ink,
+     soft low-contrast photography, light display weight */
+  --bg-rgb: 252 252 250;
+  --paper-rgb: 242 242 239;
+  --ink-rgb: 30 30 30;
+  --inv-bg-rgb: 232 231 227;
+  --inv-ink-rgb: 30 30 30;
+  --on-image-rgb: 255 255 255;
+  --scrim-rgb: 24 24 24;
+  --accent-rgb: 30 30 30;
+  --inv-accent-rgb: 30 30 30;
+  --media-bg: #d8d7d3;
+  --img-filter: grayscale(1) contrast(0.94) brightness(1.07);
+  --em-alpha: 0.62;
+  --label-alpha: 0.72;
+  --muted: 0.76;
+  --faint: 0.66;
+  --display-weight: 400;
+  --title-weight: 400;
+  --display-tracking: -0.015em;
+  color-scheme: light;
+}
+
+html[data-default-theme='noir']:not([data-theme]),
+html[data-theme='noir'] {
+  /* Noir Rouge — near-black pages, deep burgundy inverse scenes,
+     wine-toned photography, crimson italics */
+  --bg-rgb: 17 12 13;
+  --paper-rgb: 28 19 21;
+  --ink-rgb: 238 230 229;
+  --inv-bg-rgb: 60 12 23;
+  --inv-ink-rgb: 246 236 235;
+  --on-image-rgb: 250 242 241;
+  --scrim-rgb: 24 5 9;
+  --accent-rgb: 212 104 116;
+  --inv-accent-rgb: 238 176 182;
+  --media-bg: #2a1418;
+  --img-filter: grayscale(1) sepia(0.42) hue-rotate(-42deg) saturate(1.9) contrast(1.14) brightness(0.84);
+  --em-alpha: 1;
+  --label-alpha: 1;
+  --muted: 0.72;
+  --faint: 0.6;
+  --display-weight: 600;
+  --title-weight: 500;
+  --display-tracking: -0.02em;
+  color-scheme: dark;
+}
+
+/* ============================================
+   SURFACES
+   Each section declares what it sits on; components then use
+   --fg-rgb / --surf-rgb / --acc-rgb and adapt automatically.
+   ============================================ */
+:root {
+  --fg-rgb: var(--ink-rgb);
+  --surf-rgb: var(--bg-rgb);
+  --acc-rgb: var(--accent-rgb);
+}
+
+/* inverse scenes */
+.nav,
+.nav__mobile-menu,
+.footer,
+.hero,
+.divisions,
+.salon-hero,
+.salon-editorial,
+.quote-section,
+.cos-brands,
+.bq-coll,
+.about-divisions,
+.theme-switch__panel--inverse {
+  --fg-rgb: var(--inv-ink-rgb);
+  --surf-rgb: var(--inv-bg-rgb);
+  --acc-rgb: var(--inv-accent-rgb);
+}
+
+/* type set directly over photography */
+.division,
+.hero__keywords,
+.hero__arrows,
+.salon-services__visual,
+.salon-editorial__panel,
+.salon-cta,
+.closing,
+.bq-hero,
+.cos-hero__after,
+.cos-index__preview {
+  --fg-rgb: var(--on-image-rgb);
+  --surf-rgb: var(--scrim-rgb);
+  --acc-rgb: var(--on-image-rgb);
+}
+
+/* light panels nested inside inverse scenes */
+.salon-editorial__duo-content {
+  --fg-rgb: var(--ink-rgb);
+  --surf-rgb: var(--bg-rgb);
+  --acc-rgb: var(--accent-rgb);
+}
+
+/* display type follows the theme's weight */
+.hero__wordmark,
+.division__title,
+.editorial__heading,
+.featured__title,
+.salon-hero__title,
+.salon-services__heading,
+.salon-editorial__panel-heading,
+.salon-editorial__duo-heading,
+.salon-experience__heading,
+.salon-cta__heading,
+.numbered__heading,
+.closing__heading,
+.cos-hero__title,
+.cos-promise__heading,
+.cos-index__heading,
+.cos-brands__heading,
+.bq-hero__title,
+.bq-intro__heading,
+.bq-coll__heading,
+.bq-look__heading,
+.about-hero__title,
+.about-essence__heading,
+.about-divisions__heading,
+.about-div__title,
+.contact-hero__title,
+.contact-enquiry__title {
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+}
+
+.salon-services__item-title,
+.cos-index__title,
+.numbered__title,
+.featured__item-title,
+.bq-coll__title {
+  font-weight: var(--title-weight);
+}
+
+/* italics carry the theme accent */
+[data-lines] em,
+.footer__statement em,
+.salon-editorial__panel-heading em {
+  color: rgb(var(--acc-rgb) / var(--em-alpha));
+}
+
+.cos-hero__title em {
+  /* the title uses difference blending: only white inverts cleanly */
+  color: #fff;
+}
+
+::selection {
+  background: rgb(var(--acc-rgb));
+  color: rgb(var(--surf-rgb));
+}
+
+/* ============================================
+   THEME CHANGE
+   View Transition: the new theme is revealed as a circle
+   growing from the control that was pressed.
+   Fallback: a short colour cross-fade.
+   ============================================ */
+html.theme-vt::view-transition-old(root) {
+  animation: none;
+}
+
+html.theme-vt::view-transition-new(root) {
+  animation: theme-reveal 1s var(--ease-io) both;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0%));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 0%));
+  }
+}
+
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, filter 0.6s ease !important;
+}
